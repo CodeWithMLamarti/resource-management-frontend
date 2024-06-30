@@ -10,6 +10,8 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import {AuthGuard} from "../../guards/auth.guard";
 import {AccessDeniedComponent} from "../../access-denied/access-denied.component";
+import {SignUpComponent} from "../../sign-up/sign-up.component";
+import {UsersListComponent} from "../../users-list/users-list.component";
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -55,9 +57,10 @@ export const AdminLayoutRoutes: Routes = [
     //     }]
     // }
     { path: 'user-profile',   component: UserProfileComponent, canActivate: [AuthGuard],data: {role: ["MANAGER", "HR", "EMPLOYEE"]},    },
+    { path: 'sign-up',   component: SignUpComponent, canActivate: [AuthGuard],data: {role: ["HR"]},    },
     { path: 'dashboard',      component: DashboardComponent, canActivate: [AuthGuard],data: {role: ["MANAGER", "HR"]} },
 
-    { path: 'table-list',     component: TableListComponent,  canActivate: [AuthGuard],data: {role: ["HR"]}  },
+    { path: 'users-list',     component: UsersListComponent,  canActivate: [AuthGuard],data: {role: ["HR"]}  },
     { path: 'typography',     component: TypographyComponent, canActivate: [AuthGuard],data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
     //{ path: 'icons',          component: IconsComponent },
     //{ path: 'maps',           component: MapsComponent },

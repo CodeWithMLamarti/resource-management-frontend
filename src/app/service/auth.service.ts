@@ -13,6 +13,11 @@ export class AuthService {
   private role: string;
   constructor(private http: HttpClient) {}
 
+  register(registerRequest) {
+    const url = this.baseUrl + "/auth/register";
+    return this.http.post(url, registerRequest);
+  }
+
   login(loginRequest: LoginRequest) {
     const url = this.baseUrl + "/auth/authenticate";
     return this.http.post<{ token: string, role: string }>(url, loginRequest).pipe(

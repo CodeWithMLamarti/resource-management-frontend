@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -15,7 +15,8 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' ,data: {role: ["MANAGER", "HR"]} },
     { path: '/user-profile', title: 'User Profile',  icon:'person', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '',data: {role: ["HR"]} },
+    { path: '/sign-up', title: 'Sign-up',  icon:'person', class: '',data: {role: ["HR"]} },
+    { path: '/users-list', title: 'Liste des Employés',  icon:'content_paste', class: '',data: {role: ["HR"]} },
     { path: '/typography', title: 'Typography',  icon:'library_books', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
     //{ path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
     //{ path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
@@ -28,11 +29,15 @@ export const ROUTES: RouteInfo[] = [
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   menuItems: any[];
   role: string;
 
   constructor() { }
+
+    ngOnDestroy(): void {
+        throw new Error('Method not implemented.');
+    }
 
   ngOnInit() {
       this.role = localStorage.getItem("role");

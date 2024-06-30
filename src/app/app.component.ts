@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
           if(localStorage.getItem("role") === "EMPLOYEE") {
             this.router.navigate(['/user-profile']);
           } else {
-            //this.router.navigate(['/dashboard']);
+            this.router.navigate(['/dashboard']);
           }
 
         },

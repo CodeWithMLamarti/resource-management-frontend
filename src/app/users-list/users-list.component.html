@@ -1,0 +1,74 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Simple Table</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    NOM
+                                </th>
+                                <th>
+                                    PRENOM
+                                </th>
+                                <th>
+                                    MATRICULE
+                                </th>
+                                <th>
+                                    PERSONNEL
+                                </th>
+                                <th>
+                                    ROLE
+                                </th>
+                                <th>
+                                    ACTION
+                                </th>
+                                </thead>
+                                <tbody *ngFor="let user of usersList">
+                                <tr>
+                                    <td>
+                                        {{ user.id }}
+                                    </td>
+                                    <td>
+                                        {{ user.firstName }}
+                                    </td>
+                                    <td>
+                                        {{ user.lastName }}
+                                    </td>
+                                    <td>
+                                        {{ user.serialNumber }}
+                                    </td>
+                                    <td class="text-primary">
+                                        {{ user.job }}
+                                    </td>
+                                    <td class="text-primary">
+                                        {{ user.role }}
+                                    </td>
+                                    <td class="text-primary">
+                                        <button style="margin-right: 10px" (click)="editUser(user.id)" mat-mini-fab color="primary" aria-label="Example icon button with a edit icon">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button (click)="deleteUser(user.id)" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
