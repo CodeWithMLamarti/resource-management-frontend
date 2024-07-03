@@ -1,0 +1,11 @@
+.pending-status {
+    background-color: #f0f0f0; /* Soft gray */
+}
+
+.approved-status {
+    background-color: #d4edda; /* Green */
+}
+
+.denied-status {
+    background-color: #f8d7da; /* Soft red */
+}

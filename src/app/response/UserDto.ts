@@ -3,6 +3,9 @@ export class UserDto {
     firstName: string;
     lastName: string;
     serialNumber: number;
+    email: string;
+    phone: string;
+    balance: number;
     job: string;
     role: string;
 

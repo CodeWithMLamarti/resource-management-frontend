@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Mes Demandes de Break</h4>
+                        <p class="card-category">Suivez vos demandes de break.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" matSort (matSortChange)="sortData($event)">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th mat-sort-header="id">ID</th>
+                                    <th mat-sort-header="startDate">Date de Début</th>
+                                    <th mat-sort-header="endDate">Date de Fin</th>
+                                    <th mat-sort-header="reason">Motif</th>
+                                    <th mat-sort-header="status">Statut</th>
+                                    <th mat-sort-header="breakType">Type de Congé</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let break of breaksList" [ngClass]="getStatusClass(break.status)">
+                                    <td>{{ break.id }}</td>
+                                    <td>{{ break.startDate }}</td>
+                                    <td>{{ break.endDate }}</td>
+                                    <td>{{ break.reason }}</td>
+                                    <td>{{ break.status === 'APPROVED' ? 'Approuvée' : break.status === 'DENIED' ? 'Refusée' : 'En Cours' }}</td>
+                                    <td>{{ transformToFrensh(break.breakType) }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

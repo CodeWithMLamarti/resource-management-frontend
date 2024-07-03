@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegisterRequest} from "../request/RegisterRequest";
 import {AuthService} from "../service/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {NotificationsService} from "../service/notifications.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +14,11 @@ export class SignUpComponent implements OnInit {
 
   accountForm: FormGroup;
 //, private _snackBar: MatSnackBar
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+      private fb: FormBuilder,
+      private authService: AuthService,
+      private notificationsService: NotificationsService
+  ) {
     this.accountForm = this.fb.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
@@ -38,16 +43,16 @@ export class SignUpComponent implements OnInit {
           formValues.matricule,
           formValues.email,
           formValues.password,
-          formValues.phone,
+          formValues.telephone,
           formValues.personnel,
           formValues.role
       );
       this.authService.register(registerRequest).subscribe({
         next: res => {
           this.accountForm.reset();
-          //this.openSnackBar('Message archived', 'Undo');
+          this.notificationsService.showNotification("top", 'right', "L'utilisateur a été crée avec succès", 'success')
         },
-        error: err => {}
+        error: err => {this.notificationsService.showNotification("top", 'right', "Une erreur est survenue.", 'danger')}
       })
       //console.log('Form Submitted!', this.accountForm.value);
     } else {

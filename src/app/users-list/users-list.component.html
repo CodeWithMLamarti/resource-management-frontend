@@ -4,29 +4,38 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Simple Table</h4>
-                        <p class="card-category"> Here is a subtitle for this table</p>
+                        <h4 class="card-title ">Liste des Utilisateurs</h4>
+                        <p class="card-category">Vous pouvez de modifier ou supprimer un utilisateur.</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <form class="navbar-form pull-right">
+                                <div class="input-group no-border">
+                                    <input (change)="searchItem($event)" type="text" [(ngModel)]="searchInput" class="form-control" placeholder="Search...">
+                                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table"  matSort (matSortChange)="sortData($event)">
                                 <thead class=" text-primary">
-                                <th>
+                                <th mat-sort-header="id">
                                     ID
                                 </th>
-                                <th>
+                                <th mat-sort-header="nom">
                                     NOM
                                 </th>
-                                <th>
+                                <th mat-sort-header="prenom">
                                     PRENOM
                                 </th>
-                                <th>
+                                <th mat-sort-header="matricule">
                                     MATRICULE
                                 </th>
-                                <th>
+                                <th mat-sort-header="personnel">
                                     PERSONNEL
                                 </th>
-                                <th>
+                                <th mat-sort-header="role">
                                     ROLE
                                 </th>
                                 <th>
@@ -54,7 +63,7 @@
                                         {{ user.role }}
                                     </td>
                                     <td class="text-primary">
-                                        <button style="margin-right: 10px" (click)="editUser(user.id)" mat-mini-fab color="primary" aria-label="Example icon button with a edit icon">
+                                        <button [routerLink]="['/edit-user', user.id]" style="margin-right: 10px" mat-mini-fab color="primary" aria-label="Example icon button with a edit icon">
                                             <mat-icon>edit</mat-icon>
                                         </button>
                                         <button (click)="deleteUser(user.id)" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
@@ -65,6 +74,13 @@
 
                                 </tbody>
                             </table>
+                            <mat-paginator (page)="handlePageEvent($event)"
+                                           [length]="length"
+                                           [pageSize]="10"
+                                           [pageSizeOptions]="[5, 10, 25, 100]"
+                                           aria-labelledby="Element par page:"
+                                           aria-label="Element par page:">
+                            </mat-paginator>
                         </div>
                     </div>
                 </div>

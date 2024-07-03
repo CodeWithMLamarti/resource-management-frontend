@@ -160,10 +160,10 @@ iframe {
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 33px 130px;
+    align-items: center;
+    padding: 33px 100px;
 }
 
 /*------------------------------------------------------------------

@@ -20,9 +20,9 @@ export class AuthService {
 
   login(loginRequest: LoginRequest) {
     const url = this.baseUrl + "/auth/authenticate";
-    return this.http.post<{ token: string, role: string }>(url, loginRequest).pipe(
+    return this.http.post<{ token: string, role: string, id: number }>(url, loginRequest).pipe(
         tap({
-          next: res => {this.role = localStorage.getItem("role") ? localStorage.getItem("role") : res.role;},
+          next: res => {this.role = localStorage.getItem("role") ? localStorage.getItem("role") : res.role; localStorage.setItem("id", `${res.id}`); console.log("from login: " + res)},
           error: err => {this.role = null;}
         })
     );

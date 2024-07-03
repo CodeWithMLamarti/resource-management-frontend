@@ -1,0 +1,77 @@
+<div class="main-content w-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Demande de Congé</h4>
+                        <p class="card-category">Entrez les informations nécessaires pour demander un congé</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Date de Départ</mat-label>
+                                        <input matInput [matDatepicker]="picker1" formControlName="dateDepart">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                        <mat-error *ngIf="leaveForm.get('dateDepart').invalid && leaveForm.get('dateDepart').touched">
+                                            Date de départ est requise et doit être valide.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Date d'Arrivée</mat-label>
+                                        <input matInput [matDatepicker]="picker2" formControlName="dateArrivee">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                        <mat-error *ngIf="leaveForm.get('dateArrivee').invalid && leaveForm.get('dateArrivee').touched">
+                                            Date d'arrivée est requise et doit être valide.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Type de Congé</mat-label>
+                                        <mat-select formControlName="typeConge">
+                                            <mat-option value="PAID">Payé</mat-option>
+                                            <mat-option value="UNPAID">Non-payé</mat-option>
+                                            <mat-option value="DISEASE">Maladie</mat-option>
+                                            <mat-option value="MATERNITY">Materinité</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="leaveForm.get('typeConge').invalid && leaveForm.get('typeConge').touched">
+                                            Type de congé est requis.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Motif de Congé</mat-label>
+                                        <textarea matInput formControlName="motifConge"></textarea>
+                                        <mat-error *ngIf="leaveForm.get('motifConge').invalid && leaveForm.get('motifConge').touched">
+                                            Motif de congé est requis.
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Votre Solde</mat-label>
+                                        <input matInput formControlName="solde" disabled>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-success pull-right" [disabled]="leaveForm.invalid">Soumettre</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

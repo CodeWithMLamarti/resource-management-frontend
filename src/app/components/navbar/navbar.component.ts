@@ -122,4 +122,10 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+    logout() {
+        localStorage.clear();
+        this.location.go(this.location.path());
+        window.location.reload();
+    }
 }

@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Liste des Breaks</h4>
+                        <p class="card-category">Vous pouvez approuver ou désapprouver un break.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <form class="navbar-form pull-right">
+                                <div class="input-group no-border">
+                                    <input (change)="searchItem($event)" type="text" [(ngModel)]="searchInput" class="form-control" placeholder="Recherche...">
+                                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">search</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </div>
+                            </form>
+                            <table class="table" matSort (matSortChange)="sortData($event)">
+                                <thead class="text-primary">
+                                <th mat-sort-header="id">ID</th>
+                                <th mat-sort-header="startDate">Date de début</th>
+                                <th mat-sort-header="endDate">Date de fin</th>
+                                <th mat-sort-header="reason">Raison</th>
+                                <th mat-sort-header="status">Statut</th>
+                                <th mat-sort-header="breakType">Type de Congé</th>
+                                <th mat-sort-header="user">Utilisateur</th>
+                                <th>ACTION</th>
+                                </thead>
+                                <tbody *ngFor="let break of breaksList" [ngClass]="getStatusClass(break.status)">
+                                <tr>
+                                    <td>{{ break.id }}</td>
+                                    <td>{{ break.startDate }}</td>
+                                    <td>{{ break.endDate }}</td>
+                                    <td>{{ break.reason }}</td>
+                                    <td class="text-primary">{{ getTranslatedStatus(break.status)  }}</td>
+                                    <td class="text-primary">{{ break.breakType }}</td>
+                                    <td class="text-primary">{{ break.user.firstName }} {{ break.user.lastName }}</td>
+                                    <td class="text-primary">
+                                        <button (click)="approveBreak(break.id)" style="margin-right: 10px" mat-mini-fab color="primary" aria-label="Approve break" [disabled]="break.managerApproved && localStorage.getItem('role') === 'MANAGER' || (break.hrApproved && localStorage.getItem('role') === 'HR') || break.status === 'DENIED'">
+                                            <mat-icon>check</mat-icon>
+                                        </button>
+                                        <button (click)="disapproveBreak(break.id)" mat-mini-fab color="warn" aria-label="Disapprove break" [disabled]="break.managerApproved && localStorage.getItem('role') === 'MANAGER' || (break.hrApproved && localStorage.getItem('role') === 'HR') || break.status === 'DENIED'">
+                                            <mat-icon>close</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <mat-paginator (page)="handlePageEvent($event)"
+                                           [length]="length"
+                                           [pageSize]="10"
+                                           [pageSizeOptions]="[5, 10, 25, 100]"
+                                           aria-labelledby="Élément par page:"
+                                           aria-label="Élément par page:">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

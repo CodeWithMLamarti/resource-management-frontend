@@ -66,6 +66,19 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+
+      var data = {
+          series: [5, 3, 4]
+      };
+
+      var sum = function(a, b) { return a + b };
+
+      new Chartist.Pie('#dailySalesChart1', data, {
+          labelInterpolationFnc: function(value) {
+              return Math.round(value / data.series.reduce(sum) * 100) + '%';
+          }
+      });
+      
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {

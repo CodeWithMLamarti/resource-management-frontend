@@ -31,8 +31,12 @@ export class LoginComponent implements OnInit {
           if(!!res.token) {
             localStorage.setItem("authToken", res.token);
             localStorage.setItem("role", res.role);
-            console.log("cc");
-            this.router.navigate(["/dashboard"]);
+            if(localStorage.getItem("role") !== "EMPLOYEE") {
+              this.router.navigate(["/dashboard"]);
+            } else {
+              this.router.navigate(["/user-profile"]);
+            }
+
 
 
           } else {

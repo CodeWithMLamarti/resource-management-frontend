@@ -20,6 +20,14 @@ import {MatButtonModule} from "@angular/material/button";
 import {ComponentsModule} from "./components/components.module";
 import { UsersListComponent } from './users-list/users-list.component';
 import {MatIconModule} from "@angular/material/icon";
+import { EditUserComponent } from './edit-user/edit-user.component';
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { DaysOffComponent } from './days-off/days-off.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { DocsRequestComponent } from './docs-request/docs-request.component';
+import { HistoriqueComponent } from './historique/historique.component';
+import { TrackRequestComponent } from './track-request/track-request.component';
 
 @NgModule({
     imports: [
@@ -36,6 +44,9 @@ import {MatIconModule} from "@angular/material/icon";
         MatSelectModule,
         MatButtonModule,
         MatIconModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatDatepickerModule,
     ],
   declarations: [
     AppComponent,
@@ -44,6 +55,11 @@ import {MatIconModule} from "@angular/material/icon";
     AccessDeniedComponent,
     SignUpComponent,
     UsersListComponent,
+    EditUserComponent,
+    DaysOffComponent,
+    DocsRequestComponent,
+    HistoriqueComponent,
+    TrackRequestComponent,
 
   ],
   providers: [],

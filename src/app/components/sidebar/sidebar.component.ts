@@ -15,12 +15,13 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' ,data: {role: ["MANAGER", "HR"]} },
     { path: '/user-profile', title: 'User Profile',  icon:'person', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
-    { path: '/sign-up', title: 'Sign-up',  icon:'person', class: '',data: {role: ["HR"]} },
+    { path: '/sign-up', title: 'Sign-up',  icon:'how_to_reg', class: '',data: {role: ["HR"]} },
     { path: '/users-list', title: 'Liste des Employés',  icon:'content_paste', class: '',data: {role: ["HR"]} },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
-    //{ path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    //{ path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '',data: {role: ["MANAGER", "HR"]} },
+    //{ path: '/typography', title: 'Typography',  icon:'library_books', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
+    { path: '/days-off', title: 'Demande de congé',  icon:'calendar_month', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
+    { path: '/historique', title: 'Historique',  icon:'schedule', class: '',data: {role: ["MANAGER", "HR"]} },
+    { path: '/docs-request', title: 'Demande des Documents',  icon:'description', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
+    { path: '/track-request', title: 'Suivre vos demande',  icon:'request_quote', class: '',data: {role: ["MANAGER", "HR", "EMPLOYEE"]} },
     //{ path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
 ];
 
@@ -29,15 +30,11 @@ export const ROUTES: RouteInfo[] = [
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit {
   menuItems: any[];
   role: string;
 
   constructor() { }
-
-    ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
-    }
 
   ngOnInit() {
       this.role = localStorage.getItem("role");
