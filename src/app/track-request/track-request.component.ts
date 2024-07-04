@@ -6,6 +6,8 @@ import {Router} from "@angular/router";
 import {NotificationsService} from "../service/notifications.service";
 import {Sort} from "@angular/material/sort";
 import {PageEvent} from "@angular/material/paginator";
+import {DocService} from "../service/doc.service";
+import {DocDto} from "../request/DocDto";
 
 @Component({
   selector: 'app-track-request',
@@ -14,15 +16,23 @@ import {PageEvent} from "@angular/material/paginator";
 })
 export class TrackRequestComponent implements OnInit {
   breaksList: Break[];
+  docsList: DocDto[]
   breaksBeforeSort: Break[];
   userId: number;
 
-  constructor(private breakService: BreakService, private authService: AuthService) { }
+  constructor(private breakService: BreakService, private authService: AuthService, private docService: DocService) { }
 
   ngOnInit(): void {
     this.authService.validateToken(localStorage.getItem("authToken")).subscribe(user => {
       this.userId = user.id;
       this.loadBreaks();
+      this.loadDocs();
+    });
+  }
+
+  loadDocs() {
+    this.docService.getDocsById(this.userId).subscribe(res => {
+      this.docsList = res;
     });
   }
 
@@ -87,7 +97,8 @@ export class TrackRequestComponent implements OnInit {
   }
 
   transformToFrensh(text: string) {
-    return text === "PAID" ? "Payé" : text === "UNPAID" ? "Non-payé" : text === "DISEASE" ? "Maladie" : text === "MATERNITY" ? "Matenité" : "";
+    return text === "PAID" ? "Payé" : text === "UNPAID" ? "Non-payé" : text === "DISEASE" ? "Maladie" : text === "MATERNITY" ? "Matenité" : text === "WORK" ? "Attestation de travail": text === "SALARY" ? "attestation de salaire": text === "BREAK" ? "fiche\n" +
+        "de congé" : "";
   }
 
 }

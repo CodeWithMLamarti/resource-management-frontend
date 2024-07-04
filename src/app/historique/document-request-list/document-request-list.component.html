@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title">Liste des Demandes de Documents</h4>
+                <p class="card-category">Vous pouvez supprimer une demande de document.</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <form class="navbar-form pull-right">
+                        <div class="input-group no-border">
+                            <input (change)="searchItem($event)" type="text" [(ngModel)]="searchInput" class="form-control" placeholder="Recherche...">
+                            <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </div>
+                    </form>
+                    <table class="table" matSort (matSortChange)="sortData($event)">
+                        <thead class="text-primary">
+                        <th mat-sort-header="id">ID</th>
+                        <th mat-sort-header="requestDate">Date de demande</th>
+                        <th mat-sort-header="documentType">Type de document</th>
+                        <th mat-sort-header="user">Utilisateur</th>
+                        <th>ACTION</th>
+                        </thead>
+                        <tbody *ngFor="let request of documentRequestsList">
+                        <tr>
+                            <td>{{ request?.id }}</td>
+                            <td>{{ request?.requestedAt | date }}</td>
+                            <td class="text-primary">{{ request?.docType }}</td>
+                            <td class="text-primary">{{ request?.user?.firstName }} {{ request?.user?.lastName }}</td>
+                            <td class="text-primary">
+                                <button (click)="deleteRequest(request.id)" mat-mini-fab color="warn" aria-label="Delete request">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <mat-paginator (page)="handlePageEvent($event)"
+                                   [length]="length"
+                                   [pageSize]="10"
+                                   [pageSizeOptions]="[5, 10, 25, 100]"
+                                   aria-labelledby="Élément par page:"
+                                   aria-label="Élément par page:">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

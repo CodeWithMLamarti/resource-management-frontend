@@ -45,28 +45,28 @@
                                 <tbody *ngFor="let user of usersList">
                                 <tr>
                                     <td>
-                                        {{ user.id }}
+                                        {{ user?.id }}
                                     </td>
                                     <td>
-                                        {{ user.firstName }}
+                                        {{ user?.firstName }}
                                     </td>
                                     <td>
-                                        {{ user.lastName }}
+                                        {{ user?.lastName }}
                                     </td>
                                     <td>
-                                        {{ user.serialNumber }}
+                                        {{ user?.serialNumber }}
                                     </td>
                                     <td class="text-primary">
-                                        {{ user.job }}
+                                        {{ user?.job }}
                                     </td>
                                     <td class="text-primary">
-                                        {{ user.role }}
+                                        {{ user?.role }}
                                     </td>
                                     <td class="text-primary">
-                                        <button [routerLink]="['/edit-user', user.id]" style="margin-right: 10px" mat-mini-fab color="primary" aria-label="Example icon button with a edit icon">
+                                        <button [routerLink]="['/edit-user', user?.id]" style="margin-right: 10px" mat-mini-fab color="primary" aria-label="Example icon button with a edit icon">
                                             <mat-icon>edit</mat-icon>
                                         </button>
-                                        <button (click)="deleteUser(user.id)" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
+                                        <button (click)="deleteUser(user?.id)" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
                                             <mat-icon>delete</mat-icon>
                                         </button>
                                     </td>
@@ -77,7 +77,7 @@
                             <mat-paginator (page)="handlePageEvent($event)"
                                            [length]="length"
                                            [pageSize]="10"
-                                           [pageSizeOptions]="[5, 10, 25, 100]"
+                                           [pageSizeOptions]="[5, 10, 25]"
                                            aria-labelledby="Element par page:"
                                            aria-label="Element par page:">
                             </mat-paginator>

@@ -28,6 +28,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import { DocsRequestComponent } from './docs-request/docs-request.component';
 import { HistoriqueComponent } from './historique/historique.component';
 import { TrackRequestComponent } from './track-request/track-request.component';
+import { DocumentRequestListComponent } from './historique/document-request-list/document-request-list.component';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import { TrackRequestComponent } from './track-request/track-request.component';
     DocsRequestComponent,
     HistoriqueComponent,
     TrackRequestComponent,
+    DocumentRequestListComponent,
 
   ],
   providers: [],

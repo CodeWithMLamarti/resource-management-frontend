@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Liste des Breaks</h4>
-                        <p class="card-category">Vous pouvez approuver ou désapprouver un break.</p>
+                        <h4 class="card-title">Liste des Congés</h4>
+                        <p class="card-category">Vous pouvez approuver ou désapprouver un Congé.</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -31,13 +31,13 @@
                                 </thead>
                                 <tbody *ngFor="let break of breaksList" [ngClass]="getStatusClass(break.status)">
                                 <tr>
-                                    <td>{{ break.id }}</td>
-                                    <td>{{ break.startDate }}</td>
-                                    <td>{{ break.endDate }}</td>
-                                    <td>{{ break.reason }}</td>
-                                    <td class="text-primary">{{ getTranslatedStatus(break.status)  }}</td>
-                                    <td class="text-primary">{{ break.breakType }}</td>
-                                    <td class="text-primary">{{ break.user.firstName }} {{ break.user.lastName }}</td>
+                                    <td>{{ break?.id }}</td>
+                                    <td>{{ break?.startDate }}</td>
+                                    <td>{{ break?.endDate }}</td>
+                                    <td>{{ break?.reason }}</td>
+                                    <td class="text-primary">{{ getTranslatedStatus(break?.status)  }}</td>
+                                    <td class="text-primary">{{ break?.breakType }}</td>
+                                    <td class="text-primary">{{ break?.user?.firstName }} {{ break?.user?.lastName }}</td>
                                     <td class="text-primary">
                                         <button (click)="approveBreak(break.id)" style="margin-right: 10px" mat-mini-fab color="primary" aria-label="Approve break" [disabled]="break.managerApproved && localStorage.getItem('role') === 'MANAGER' || (break.hrApproved && localStorage.getItem('role') === 'HR') || break.status === 'DENIED'">
                                             <mat-icon>check</mat-icon>
@@ -61,5 +61,6 @@
                 </div>
             </div>
         </div>
+        <app-document-request-list></app-document-request-list>
     </div>
 </div>

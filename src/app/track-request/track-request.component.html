@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Mes Demandes de Break</h4>
-                        <p class="card-category">Suivez vos demandes de break.</p>
+                        <h4 class="card-title">Mes Demandes de Congé</h4>
+                        <p class="card-category">Suivez vos demandes de congé.</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -22,12 +22,41 @@
                                 </thead>
                                 <tbody>
                                 <tr *ngFor="let break of breaksList" [ngClass]="getStatusClass(break.status)">
-                                    <td>{{ break.id }}</td>
-                                    <td>{{ break.startDate }}</td>
-                                    <td>{{ break.endDate }}</td>
-                                    <td>{{ break.reason }}</td>
-                                    <td>{{ break.status === 'APPROVED' ? 'Approuvée' : break.status === 'DENIED' ? 'Refusée' : 'En Cours' }}</td>
-                                    <td>{{ transformToFrensh(break.breakType) }}</td>
+                                    <td>{{ break?.id }}</td>
+                                    <td>{{ break?.startDate }}</td>
+                                    <td>{{ break?.endDate }}</td>
+                                    <td>{{ break?.reason }}</td>
+                                    <td>{{ break?.status === 'APPROVED' ? 'Approuvée' : break?.status === 'DENIED' ? 'Refusée' : 'En Cours' }}</td>
+                                    <td>{{ transformToFrensh(break?.breakType) }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Mes Demandes de Documents</h4>
+                        <p class="card-category">Suivez vos demandes de documents.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" matSort (matSortChange)="sortData($event)">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th mat-sort-header="requestedAt">Demandé à</th>
+                                    <th mat-sort-header="docType">Type de document</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let doc of docsList">
+                                    <td>{{ doc?.requestedAt }}</td>
+                                    <td>{{ transformToFrensh(doc?.docType) }}</td>
                                 </tr>
                                 </tbody>
                             </table>
